@@ -61,10 +61,11 @@ Older configs track ZMK `main` and select the keyboard model with a
 4. Re-lay-out your keymap to match the selected layout. **The physical
    layouts do not use the same key order as the old matrix transforms** — in
    particular the 12 thumb-cluster keys are the **last 12 bindings** of every
-   Imprint layout (two arcs of three per hand), after all the grid rows. The
-   easiest way to get this right is to start from the matching keymap in
-   `config/default keymaps/<your layout>/imprint.keymap` and drop your key
-   choices into its slots. Each `bindings` block must have exactly as many
+   current two-arc Imprint layout (two arcs of three per hand), after all the
+   grid rows. The easiest way to get this right is to start from the matching
+   keymap in `config/default keymaps/imprint_<your layout>/imprint.keymap` (the
+   default-keymap directories are `imprint_`-prefixed) and drop your key choices
+   into its slots. Each `bindings` block must have exactly as many
    entries as the layout has keys, or keys silently stop responding.
 
    > **Thumb keys stopped working after migrating?** That is the classic
