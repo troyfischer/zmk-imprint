@@ -48,7 +48,34 @@ Older configs track ZMK `main` and select the keyboard model with a
    Step 3 matters: with a chosen `zmk,matrix-transform`, ZMK ignores the
    physical layouts that the current `zmk-keyboards` shields are built
    around, and the firmware is not compatible with ZMK Studio.
-4. (Optional, for ZMK Studio) In `build.yaml`, add the Studio snippet and
+
+   Pick the physical layout that matches the keys your board **physically
+   has** (its rows, and whether it has a full bottom row). This is not always
+   the same name as your old `matrix-transform`: some older configs selected a
+   larger *superset* transform and left the unpopulated positions as `&trans`.
+   For example, a 36-key board with three letter rows and a single thumb arc
+   is `letters_only_no_bottom_row`, even if its old config named
+   `function_row_full_bottom_row`. When unsure, flash and open
+   [ZMK Studio](https://studio.cyboard.digital) — it renders the layout you
+   selected, so you can see at a glance whether it matches your keyboard.
+4. Re-lay-out your keymap to match the selected layout. **The physical
+   layouts do not use the same key order as the old matrix transforms** — in
+   particular the 12 thumb-cluster keys are the **last 12 bindings** of every
+   Imprint layout (two arcs of three per hand), after all the grid rows. The
+   easiest way to get this right is to start from the matching keymap in
+   `config/default keymaps/<your layout>/imprint.keymap` and drop your key
+   choices into its slots. Each `bindings` block must have exactly as many
+   entries as the layout has keys, or keys silently stop responding.
+
+   > **Thumb keys stopped working after migrating?** That is the classic
+   > symptom of a keymap whose bindings no longer line up with the selected
+   > layout: the grid keys still work (they share positions across layouts) but
+   > the thumb bindings land on the wrong — or nonexistent — positions, so the
+   > thumb cluster goes dead. Rebuild the layer from the matching default
+   > keymap so your thumb bindings occupy the last twelve slots. On a
+   > single-arc board only one of the two thumb rows physically exists; use
+   > ZMK Studio to confirm which, then bind those keys.
+5. (Optional, for ZMK Studio) In `build.yaml`, add the Studio snippet and
    config to the `imprint_left` entry, as in this template's `build.yaml`:
 
    ```yaml
