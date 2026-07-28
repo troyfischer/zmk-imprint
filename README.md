@@ -1,8 +1,15 @@
 # ZMK Configuration Template
 Wireless Cyboard keyboard configuration repository template for using ZMK firmware. [Instructions for use are located on our documentation site](https://docs.cyboard.digital/user-manual/quick-start/configure-layout).
 
-## ZMK version
-This template pins the latest **stable** ZMK release (currently `v0.3.0`), which matches the firmware stack behind [studio.cyboard.digital](https://studio.cyboard.digital). If you want to track current ZMK `main` (Zephyr 4.1) instead, edit `config/west.yml`: set the `zmk` revision to `main` and the `zmk-keyboards` revision to `zephyr-4.1`.
+## Pinned versions
+`config/west.yml` pins two projects to fixed releases so your firmware is reproducible and cannot change under you:
+
+- **`zmk`** → the latest **stable** ZMK release (currently `v0.3.0`), matching the firmware stack behind [studio.cyboard.digital](https://studio.cyboard.digital).
+- **`zmk-keyboards`** → a tagged release (currently `v2026.07`) of the Cyboard board, shield, and physical-layout definitions. Pinning this is what keeps your keymap working: the physical layouts — key positions, layout names, and the order bindings appear in — are frozen at that tag, so a later change on `zmk-keyboards` `main` cannot shift them under your keymap and silently break keys (e.g. a dead thumb cluster after a rebuild).
+
+Version bumps are deliberate: when you want newer boards, layouts, or a newer stable ZMK, edit `config/west.yml` (and, for a new ZMK, the matching tag in `.github/workflows/build.yml`), push, and let CI prove the build before you flash. The [zmk-keyboards releases](https://github.com/Cyboard-DigitalTailor/zmk-keyboards/releases) page lists what each tag contains.
+
+To track current ZMK `main` (Zephyr 4.1) instead, edit `config/west.yml`: set the `zmk` revision to `main` and the `zmk-keyboards` revision to `zephyr-4.1`.
 
 ## ZMK Studio support
 
@@ -30,8 +37,11 @@ layout definitions.
 Older configs track ZMK `main` and select the keyboard model with a
 `zmk,matrix-transform` chosen node. To move one onto the current stable stack:
 
-1. In `config/west.yml`, set the `zmk` revision from `main` to `v0.3.0`
-   (leave `zmk-keyboards` on `main`).
+1. In `config/west.yml`, set the `zmk` revision from `main` to `v0.3.0`, and
+   the `zmk-keyboards` revision from `main` to the current release tag
+   (`v2026.07`). Pinning `zmk-keyboards` to a tag rather than the moving `main`
+   branch is what stops a future definitions change from silently breaking your
+   keymap again — see [Pinned versions](#pinned-versions) above.
 2. In `.github/workflows/build.yml`, change `@main` to `@v0.3.0`.
 3. In your `config/imprint.keymap`, replace the chosen node
 
@@ -53,8 +63,8 @@ Older configs track ZMK `main` and select the keyboard model with a
    has** (its rows, and whether it has a full bottom row). This is not always
    the same name as your old `matrix-transform`: some older configs selected a
    larger *superset* transform and left the unpopulated positions as `&trans`.
-   For example, a 36-key board with three letter rows and a single thumb arc
-   is `letters_only_no_bottom_row`, even if its old config named
+   For example, a board with three letter rows and no bottom row is
+   `letters_only_no_bottom_row`, even if its old config named
    `function_row_full_bottom_row`. When unsure, flash and open
    [ZMK Studio](https://studio.cyboard.digital) — it renders the layout you
    selected, so you can see at a glance whether it matches your keyboard.
