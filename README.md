@@ -1,6 +1,14 @@
 # ZMK Configuration Template
 Wireless Cyboard keyboard configuration repository template for using ZMK firmware. [Instructions for use are located on our documentation site](https://docs.cyboard.digital/user-manual/quick-start/configure-layout).
 
+> **Already have a copy of this template from before July 2026?** The board and
+> layout definitions were reorganized in July 2026, and older copies track the
+> moving `main` branch — so a rebuild can silently break your keymap (most often
+> a dead thumb cluster). Follow [Updating a config repo created before July
+> 2026](#updating-a-config-repo-created-before-july-2026) to move onto the pinned
+> stable stack; after that, [Pinned versions](#pinned-versions) keeps it from
+> happening again.
+
 ## Pinned versions
 `config/west.yml` pins two projects to fixed releases so your firmware is reproducible and cannot change under you:
 
