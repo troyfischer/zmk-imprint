@@ -6,74 +6,91 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
 
+#define BASE 0
+#define NUMPAD_NAV 1
+#define SYMBOL_ADMIN 2
+#define AUTO_MOUSE 3
+#define FACTORY 4
+
 / {
-    chosen { zmk,physical-layout = &physical_layout_imprint_function_row_full_bottom_row; };
+    chosen { zmk,physical-layout = &physical_layout_imprint_function_row; };
+
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <50>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
 
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-&kp ESC    &kp F1  &kp F2    &kp F3    &kp F4    &kp F5              &kp F6     &kp F7    &kp F8     &kp F9    &kp F10   &kp F11
-&kp EQUAL  &kp N1  &kp N2    &kp N3    &kp N4    &kp N5              &kp N6     &kp N7    &kp N8     &kp N9    &kp N0    &kp MINUS
-&kp TAB    &kp Q   &kp W     &kp E     &kp R     &kp T               &kp Y      &kp U     &kp I      &kp O     &kp P     &kp BSLH
-&kp LCTRL  &kp A   &kp S     &kp D     &kp F     &kp G               &kp H      &kp J     &kp K      &kp L     &kp SEMI  &kp SQT
-&kp LSHFT  &kp Z   &kp X     &kp C     &kp V     &kp B               &kp N      &kp M     &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-&trans     &trans  &kp LGUI  &kp LALT  &trans                                   &trans    &kp LBKT   &kp RBKT  &trans    &trans
-                                       &kp RET   &kp DEL  &kp ESC    &kp GRAVE  &kp BSPC  &kp SPACE
-                                       &kp LGUI  &mo 1    &mo 2      &kp CAPS   &mo 2     &mo 1
+&kp ESC    &kp F1        &kp F2        &kp F3        &kp F4        &kp F5       &kp F6        &kp F7         &kp F8       &kp F9       &kp F10       &kp F11
+&kp EQUAL  &kp N1        &kp N2        &kp N3        &kp N4        &kp N5       &kp N6        &kp N7         &kp N8       &kp N9       &kp N0        &kp MINUS
+&kp TAB    &kp Q         &kp W         &kp E         &kp R         &kp T        &kp Y         &kp U          &kp I        &kp O        &kp P         &kp BSLH
+&kp LCTRL  &hm LGUI A    &hm LALT S    &hm LCTRL D   &hm LSHFT F   &kp G        &kp H         &hm RSHFT J    &hm RCTRL K  &hm RALT L   &hm RGUI SEMI &kp SQT
+&kp LSHFT  &kp Z         &kp X         &kp C         &kp V         &kp B        &kp N         &kp M          &kp COMMA    &kp DOT      &kp FSLH      &kp RSHFT
+                      &kp LGUI      &kp LALT                                                           &kp LBKT      &kp RBKT
+                                                  &kp RET      &kp DEL  &kp ESC            &kp GRAVE  &kp BSPC       &kp SPACE
+                                                  &kp LGUI     &mo NUMPAD_NAV  &mo SYMBOL_ADMIN  &kp CAPS   &mo SYMBOL_ADMIN  &mo NUMPAD_NAV
             >;
         };
 
         Numpad_Nav_Layer {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans    &trans    &trans     &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans    &trans    &trans     &trans  &trans
-&trans  &trans  &kp N7  &kp N8  &kp N9  &trans            &trans  &kp HOME  &kp UP    &kp END    &trans  &trans
-&trans  &trans  &kp N4  &kp N5  &kp N6  &trans            &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
-&trans  &trans  &kp N1  &kp N2  &kp N3  &trans            &trans  &trans    &trans    &trans     &trans  &trans
-&trans  &trans  &trans  &kp N0  &trans                            &trans    &trans    &trans     &trans  &trans
-                                &trans  &trans  &trans    &trans  &trans    &trans
-                                &trans  &trans  &trans    &trans  &trans    &trans
+&trans  &trans      &trans  &trans  &trans  &trans          &trans     &trans    &trans    &trans     &trans     &trans
+&trans  &none       &none   &none   &none   &none           &kp MINUS  &kp N7    &kp N8    &kp N9     &kp EQUAL  &trans
+&trans  &kp K_BACK  &trans  &trans  &trans  &kp K_FORWARD   &kp BSLH   &kp N4    &kp N5    &kp N6     &kp N0     &trans
+&trans  &none       &none   &none   &none   &none           &kp GRAVE  &kp N1    &kp N2    &kp N3     &kp FSLH   &trans
+&trans  &trans      &trans  &kp N0  &trans  &trans          &trans     &kp HOME  &kp UP    &kp END    &trans     &trans
+                 &trans  &kp N0                                                             &trans    &trans
+                                      &trans     &trans  &trans       &trans     &trans    &trans
+                                      &trans     &trans  &trans       &trans     &trans    &trans
             >;
         };
 
-        Keyboard_Control_Layer {
+        Symbol_Admin_Layer {
             bindings = <
-&trans       &trans        &trans        &trans        &trans        &trans                  &trans  &trans           &trans           &trans           &trans           &trans
-&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4            &trans  &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &trans           &trans           &trans
-&sys_reset   &trans        &trans        &trans        &trans        &trans                  &rgb_ug RGB_TOG  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_SPI  &sys_reset
-&bootloader  &trans        &trans        &trans        &trans        &trans                  &trans  &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &bootloader
-&to 4        &trans        &trans        &trans        &trans        &trans                  &trans  &trans           &trans           &trans           &trans           &to 4
-&to 4        &trans        &trans        &trans        &trans                                        &trans           &trans           &trans           &trans           &to 4
-                                                       &trans        &trans        &trans    &trans  &trans           &trans
-                                                       &trans        &trans        &trans    &trans  &trans           &trans
+&trans       &trans        &trans        &trans        &trans      &trans       &trans        &trans           &trans           &trans         &trans           &trans
+&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &rgb_ug RGB_TOG  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_SPI  &rgb_ug RGB_EFF
+&sys_reset   &kp LBRC      &kp LPAR      &kp RPAR      &kp RBRC    &kp QMARK     &kp LEFT      &kp DOWN         &kp UP           &kp RIGHT      &kp K_MUTE       &sys_reset
+&bootloader  &kp CARET     &kp EQUAL     &kp UNDER     &kp DLLR    &kp STAR      &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &rgb_ug RGB_EFR  &bootloader
+&to FACTORY  &kp EXCL      &kp LBKT      &kp RBKT      &kp MINUS   &kp FSLH      &kp HASH      &kp COLON        &kp DQT          &kp PIPE       &kp TILDE        &to FACTORY
+                 &kp AT     &kp AMPS                                                             &kp SEMI         &kp SQT
+                                                   &trans        &trans        &trans             &trans         &trans           &trans
+                                                   &trans        &trans        &trans             &trans         &trans           &trans
             >;
         };
 
         Auto_Mouse_Layer {
             bindings = <
-&trans  &trans  &trans     &trans     &trans     &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans     &trans     &trans                               &trans  &trans  &trans  &trans  &trans
-                                      &trans     &trans  &trans    &trans  &trans  &trans
-                                      &trans     &trans  &trans    &trans  &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans         &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans         &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans         &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans         &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans         &trans  &trans  &trans  &trans  &trans  &trans
+                 &trans     &trans                                                      &trans  &trans
+                                      &trans     &trans  &trans   &trans  &trans  &trans
+                                      &trans     &trans  &trans   &trans  &trans  &trans
             >;
         };
 
         factory_test {
             bindings = <
-&kp N0  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5            &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &kp N1
-&kp N2  &kp N3  &kp N4  &kp N5  &kp N6  &kp N7            &kp N8  &kp N9  &kp N0  &kp N1  &kp N2  &kp N3
-&kp N4  &kp N5  &kp N6  &kp N7  &kp N8  &kp N9            &kp N0  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5
-&kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &kp N1            &kp N2  &kp N3  &kp N4  &kp N5  &kp N6  &kp N7
-&kp N8  &kp N9  &kp N0  &kp N1  &kp N2  &kp N3            &kp N4  &kp N5  &kp N6  &kp N7  &kp N8  &kp N9
-&kp N0  &kp N1  &kp N2  &kp N3  &kp N4                            &kp N6  &kp N7  &kp N8  &kp N9  &kp N0
-                                &kp N1  &kp N2  &kp N3    &kp N4  &kp N5  &kp N6
-                                &kp N7  &kp N8  &kp N9    &kp N0  &kp N1  &kp N2
+&kp N0  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5         &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &kp N1
+&kp N2  &kp N3  &kp N4  &kp N5  &kp N6  &kp N7         &kp N8  &kp N9  &kp N0  &kp N1  &kp N2  &kp N3
+&kp N4  &kp N5  &kp N6  &kp N7  &kp N8  &kp N9         &kp N0  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5
+&kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &kp N1         &kp N2  &kp N3  &kp N4  &kp N5  &kp N6  &kp N7
+&kp N8  &kp N9  &kp N0  &kp N1  &kp N2  &kp N3         &kp N4  &kp N5  &kp N6  &kp N7  &kp N8  &kp N9
+                 &kp N2  &kp N3                                                     &kp N7  &kp N8
+                                      &kp N1  &kp N2  &kp N3   &kp N4  &kp N5  &kp N6
+                                      &kp N7  &kp N8  &kp N9   &kp N0  &kp N1  &kp N2
             >;
         };
     };
