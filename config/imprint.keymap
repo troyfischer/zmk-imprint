@@ -83,9 +83,9 @@
 
         Admin_Layer {
             bindings = <
-&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans          &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &trans           &trans           &trans
-&sys_reset   &trans        &trans        &trans        &trans        &trans         &trans          &kp K_VOL_DN     &kp K_VOL_UP     &kp K_MUTE       &trans           &sys_reset
-&bootloader  &trans        &trans        &trans        &trans        &trans         &rgb_ug RGB_HUD &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &rgb_ug RGB_EFR  &bootloader
+&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &rgb_ug RGB_TOG &rgb_ug RGB_EFF  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_SPI
+&trans       &trans        &trans        &trans        &trans        &trans         &rgb_ug RGB_HUD &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &rgb_ug RGB_EFR  &trans
+&trans       &trans        &trans        &trans        &trans        &trans         &kp K_VOL_DN    &kp K_VOL_UP     &kp K_MUTE       &trans           &trans           &trans
 &to FACTORY  &trans        &trans        &trans        &trans        &trans         &trans          &trans           &trans           &trans           &trans           &to FACTORY
                  &trans        &trans                                                             &trans           &trans
                                                    &trans        &trans        &trans             &trans           &trans           &trans
@@ -131,8 +131,8 @@
 
 &trackball_central_listener {
     input-processors =
-        // multiply sensitivity by 1, divide by 4 (make it slower for scrolling),
-        <&zip_xy_scaler 1 4>,
+        // multiply sensitivity by 1, divide by 5 (make it slower for scrolling),
+        <&zip_xy_scaler 1 5>,
         // make this trackball output scrolling events by default instead of cursor movement,
         <&zip_xy_to_scroll_mapper>,
         // invert vertical scrolling so that the view moves in the same direction as the top of the trackball.,
