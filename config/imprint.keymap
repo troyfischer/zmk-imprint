@@ -36,8 +36,10 @@
 &kp LCTRL  &hm LGUI A    &hm LALT S    &hm LCTRL D   &hm LSHFT F   &kp G        &kp H         &hm RSHFT J    &hm RCTRL K  &hm RALT L   &hm RGUI SEMI &kp SQT
 &kp LSHFT  &kp Z         &kp X         &kp C         &kp V         &kp B        &kp N         &kp M          &kp COMMA    &kp DOT      &kp FSLH      &kp RSHFT
                       &kp LGUI      &kp LALT                                                           &kp LBKT      &kp RBKT
-                                                  &kp RET      &kp DEL  &kp ESC            &kp GRAVE  &kp BSPC       &kp SPACE
-                                                  &kp LC(LS(LA(LGUI)))  &mt LC(LA(LSHFT)) TAB  &kp SPACE  &lt NUMPAD_NAV ESC  &lt SYMBOL_ADMIN ESC  &kp RIGHT_COMMAND
+                                                  /* upper-left */  &kp RET  &kp DEL  &kp ESC
+                                                  /* upper-right */ &kp GRAVE  &kp BSPC  &kp SPACE
+                                                  /* lower-left */  &kp LC(LS(LA(LGUI)))  &mt LC(LA(LSHFT)) TAB  &kp SPACE
+                                                  /* lower-right */ &lt NUMPAD_NAV ESC  &lt SYMBOL_ADMIN ESC  &kp RIGHT_COMMAND
             >;
         };
 
