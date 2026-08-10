@@ -41,7 +41,7 @@
                                                   /* upper-left */  &kp RET  &kp DEL  &kp LC(LS(LA(LGUI)))
                                                   /* upper-right */ &kp GRAVE  &kp BSPC  &kp SPACE
                                                   /* lower-left */  &mt LC(LA(LSHFT)) TAB  &kp SPACE &lt NUMBERS ESC
-                                                  /* lower-right */ &lt SYMBOL_1 ESC &kp RET &lt SYMBOL_2 BSPC
+                                                  /* lower-right */ &lt SYMBOL_1 ESC &lt NUMBERS RET &lt SYMBOL_2 BSPC
             >;
         };
 
