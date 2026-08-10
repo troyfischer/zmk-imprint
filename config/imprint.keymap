@@ -7,10 +7,12 @@
 #include <dt-bindings/zmk/rgb.h>
 
 #define BASE 0
-#define NUMPAD_NAV 1
-#define SYMBOL_ADMIN 2
-#define AUTO_MOUSE 3
-#define FACTORY 4
+#define NUMBERS 1
+#define SYMBOL_1 2
+#define SYMBOL_2 3
+#define ADMIN 4
+#define AUTO_MOUSE 5
+#define FACTORY 6
 
 / {
     chosen { zmk,physical-layout = &physical_layout_imprint_number_row; };
@@ -36,14 +38,14 @@
 &kp LCTRL  &hm LGUI A    &hm LALT S    &hm LCTRL D   &hm LSHFT F   &kp G        &kp H         &hm RSHFT J    &hm RCTRL K  &hm RALT L   &hm RGUI SEMI &kp SQT
 &kp LSHFT  &kp Z         &kp X         &kp C         &kp V         &kp B        &kp N         &kp M          &kp COMMA    &kp DOT      &kp FSLH      &kp RSHFT
                       &kp LGUI      &kp LALT                                                           &kp LBKT      &kp RBKT
-                                                  /* upper-left */  &kp RET  &kp DEL  &kp ESC
+                                                  /* upper-left */  &kp RET  &kp DEL  &kp LC(LS(LA(LGUI)))
                                                   /* upper-right */ &kp GRAVE  &kp BSPC  &kp SPACE
-                                                  /* lower-left */  &kp LC(LS(LA(LGUI)))  &mt LC(LA(LSHFT)) TAB  &kp SPACE
-                                                  /* lower-right */ &lt NUMPAD_NAV ESC  &lt SYMBOL_ADMIN ESC  &kp RIGHT_COMMAND
+                                                  /* lower-left */  &mt LC(LA(LSHFT)) TAB  &kp SPACE &lt NUMBERS ESC
+                                                  /* lower-right */ &lt SYMBOL_1 ESC &kp RET &lt SYMBOL_2 BSPC
             >;
         };
 
-        Numpad_Nav_Layer {
+        numbers_layer {
             bindings = <
 &trans  &trans      &trans  &trans  &trans  &trans          &trans     &trans    &trans    &trans     &trans     &trans
 &trans  &kp K_BACK  &kp N7  &kp N8  &kp N9  &kp K_FORWARD   &kp HOME   &kp UP    &kp END   &trans     &trans     &trans
@@ -55,13 +57,37 @@
             >;
         };
 
-        Symbol_Admin_Layer {
+        Symbol_1_Layer {
+            bindings = <
+&trans     &trans     &trans     &trans      &trans     &trans            &trans     &trans        &trans        &trans      &trans    &trans
+&trans     &kp LBRC   &kp LPAR   &kp RPAR    &kp RBRC   &kp QMARK         &none      &kp K_VOL_DN  &kp K_VOL_UP  &kp K_MUTE  &none     &trans
+&trans     &kp CARET  &kp EQUAL  &kp UNDER   &kp DLLR   &kp STAR          &kp LEFT   &kp DOWN      &kp UP        &kp RIGHT   &none     &trans
+&trans     &kp EXCL   &kp LBKT   &kp RBKT    &kp MINUS  &kp FSLH          &none      &none         &none         &none       &none     &trans
+                 &trans     &trans                                                             &trans    &trans
+                                      &trans     &trans  &trans       &trans     &trans    &trans
+                                      &trans     &trans  &trans       &trans     &trans    &trans
+            >;
+        };
+
+        Symbol_2_Layer {
+            bindings = <
+&trans     &trans      &trans      &trans     &trans     &trans          &trans      &trans      &trans      &trans      &trans      &trans
+&trans     &kp HASH    &kp COLON   &kp SEMI   &kp SQT    &kp DQT         &none       &none       &none       &none       &none       &trans
+&trans     &kp TILDE   &kp LT      &kp GT     &kp PIPE   &kp BSLH        &none       &none       &none       &none       &none       &trans
+&trans     &kp AT      &kp AMPS    &kp PRCNT  &kp PLUS   &kp DOT         &none       &none       &none       &none       &none       &trans
+                 &trans     &trans                                                             &trans      &trans
+                                                   &trans        &trans        &trans             &trans           &trans           &trans
+                                                   &trans        &trans        &trans             &trans           &trans           &trans
+            >;
+        };
+
+        Admin_Layer {
             bindings = <
 &bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans          &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &trans           &trans           &trans
-&sys_reset   &kp LBRC      &kp LPAR      &kp RPAR      &kp RBRC      &kp QMARK      &kp LEFT        &kp DOWN         &kp UP           &kp RIGHT        &kp K_MUTE       &sys_reset
-&bootloader  &kp CARET     &kp EQUAL     &kp UNDER     &kp DLLR      &kp STAR       &rgb_ug RGB_HUD &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &rgb_ug RGB_EFR  &bootloader
-&to FACTORY  &kp EXCL      &kp LBKT      &kp RBKT      &kp MINUS     &kp FSLH       &kp HASH        &kp COLON        &kp DQT          &kp PIPE         &kp TILDE        &to FACTORY
-                 &kp AT     &kp AMPS                                                             &kp SEMI         &kp SQT
+&sys_reset   &trans        &trans        &trans        &trans        &trans         &trans          &trans           &trans           &trans           &trans           &sys_reset
+&bootloader  &trans        &trans        &trans        &trans        &trans         &rgb_ug RGB_HUD &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &rgb_ug RGB_EFR  &bootloader
+&to FACTORY  &trans        &trans        &trans        &trans        &trans         &trans          &trans           &trans           &trans           &trans           &to FACTORY
+                 &trans        &trans                                                             &trans           &trans
                                                    &trans        &trans        &trans             &trans           &trans           &trans
                                                    &trans        &trans        &trans             &trans           &trans           &trans
             >;
