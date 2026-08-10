@@ -60,7 +60,7 @@
         Symbol_1_Layer {
             bindings = <
 &trans     &trans     &trans     &trans      &trans     &trans            &trans     &trans        &trans        &trans      &trans    &trans
-&trans     &kp LBRC   &kp LPAR   &kp RPAR    &kp RBRC   &kp QMARK         &none      &kp K_VOL_DN  &kp K_VOL_UP  &kp K_MUTE  &none     &trans
+&trans     &kp LBRC   &kp LPAR   &kp RPAR    &kp RBRC   &kp QMARK         &none      &none         &none         &none       &none     &trans
 &trans     &kp CARET  &kp EQUAL  &kp UNDER   &kp DLLR   &kp STAR          &kp LEFT   &kp DOWN      &kp UP        &kp RIGHT   &none     &trans
 &trans     &kp EXCL   &kp LBKT   &kp RBKT    &kp MINUS  &kp FSLH          &none      &none         &none         &none       &none     &trans
                  &trans     &trans                                                             &trans    &trans
@@ -84,7 +84,7 @@
         Admin_Layer {
             bindings = <
 &bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans          &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &trans           &trans           &trans
-&sys_reset   &trans        &trans        &trans        &trans        &trans         &trans          &trans           &trans           &trans           &trans           &sys_reset
+&sys_reset   &trans        &trans        &trans        &trans        &trans         &trans          &kp K_VOL_DN     &kp K_VOL_UP     &kp K_MUTE       &trans           &sys_reset
 &bootloader  &trans        &trans        &trans        &trans        &trans         &rgb_ug RGB_HUD &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &rgb_ug RGB_EFR  &bootloader
 &to FACTORY  &trans        &trans        &trans        &trans        &trans         &trans          &trans           &trans           &trans           &trans           &to FACTORY
                  &trans        &trans                                                             &trans           &trans
