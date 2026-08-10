@@ -100,7 +100,7 @@
 &trans  &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans         &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans     &trans     &trans     &trans         &trans  &trans  &trans  &trans  &trans  &trans
                  &trans     &trans                                                      &trans  &trans
-                                      &trans     &trans  &trans   &trans  &trans  &trans
+                                      &trans     &trans  &trans   &mkp LCLK  &mkp MCLK  &mkp RCLK
                                       &trans     &trans  &trans   &trans  &trans  &trans
             >;
         };
@@ -121,11 +121,11 @@
 
 // right hand trackball configuration
 
-// &trackball_peripheral_listener {
-//    input-processors =
-//     activate layer 3 within 500ms of the trackball moving
-//     <&zip_temp_layer 3 500>;
-// };
+&trackball_peripheral_listener {
+    input-processors =
+        // activate the mouse button layer while the right trackball is moving
+        <&zip_temp_layer AUTO_MOUSE 500>;
+};
 
 //left hand trackball configuration
 
