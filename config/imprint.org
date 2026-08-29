@@ -71,7 +71,7 @@ Custom hold-tap and tap-dance behaviors used across the keymap.
 
 * Base layer
 
-Default typing/navigation layer. Thumb access to numbers, symbols, admin, hyper, AOE4, and function keys. The upper-left-middle thumb key holds ~fn_aoe4_dance~: hold for the =FUNCTION= layer, tap/double-tap for the =AOE4= toggle.
+Default typing/navigation layer. Thumb access to numbers, symbols, admin, hyper, AOE4, and function keys. The upper-left-middle thumb key holds ~fn_aoe4_dance~: hold for the =FUNCTION= layer, tap/double-tap for the =AOE4= toggle. The bottom-right pinky key (right shift's position on a standard layout) is a second, dedicated ~td_aoe4~ matching its placement on the old Tomahawk keymap: double-tap it to toggle =AOE4= without going through the thumb key.
 
 #+begin_src c
         default_layer {
@@ -79,7 +79,7 @@ Default typing/navigation layer. Thumb access to numbers, symbols, admin, hyper,
 &kp EQUAL  &kp N1        &kp N2        &kp N3        &kp N4        &kp N5       &kp N6        &kp N7         &kp N8       &kp N9       &kp N0        &kp MINUS
 &kp TAB    &kp Q         &kp W         &kp E         &kp R         &kp T        &kp Y         &kp U          &kp I        &kp O        &kp P         &kp BSLH
 &lt NUMBERS CAPS  &hm LGUI A    &hm LALT S    &hm LCTRL D   &hm LSHFT F   &kp G        &kp H         &hm RSHFT J    &hm RCTRL K  &hm LALT L   &hm RGUI SEMI &kp SQT
-&kp LSHFT  &kp Z         &kp X         &kp C         &kp V         &kp B        &kp N         &kp M          &kp COMMA    &kp DOT      &kp FSLH      &kp RSHFT
+&kp LSHFT  &kp Z         &kp X         &kp C         &kp V         &kp B        &kp N         &kp M          &kp COMMA    &kp DOT      &kp FSLH      &td_aoe4
                       &kp LGUI      &kp LALT                                                           &kp LBKT      &kp RBKT
                                                   /* upper-left */  &kp LC(LA(LS(LGUI)))  &fn_aoe4_dance FUNCTION 0  &mo ADMIN
                                                   /* upper-right */ &none  &none  &none
