@@ -35,7 +35,7 @@ Custom hold-tap and tap-dance behaviors used across the keymap.
 
 - ~hm~ :: homerow mods, tap-preferred, 200ms tapping term.
 - ~td_aoe4~ :: tap-dance on the outer thumb key; a single tap does nothing, a second tap toggles the =AOE4= layer.
-- ~hold_aoe4~ :: hold-tap on the same key; holding activates the =FUNCTION= layer, tapping falls through to ~td_aoe4~ so the double-tap-to-toggle-AOE4 behavior is unchanged.
+- ~fn_aoe4_dance~ :: hold-tap on the same key; holding activates the =FUNCTION= layer, tapping falls through to ~td_aoe4~ so the double-tap-to-toggle-AOE4 behavior is unchanged.
 
 #+begin_src c
     behaviors {
@@ -55,7 +55,7 @@ Custom hold-tap and tap-dance behaviors used across the keymap.
             bindings = <&none>, <&tog AOE4>;
         };
 
-        hold_aoe4: hold_aoe4 {
+        fn_aoe4_dance: fn_aoe4_dance {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <200>;
@@ -71,7 +71,7 @@ Custom hold-tap and tap-dance behaviors used across the keymap.
 
 * Base layer
 
-Default typing/navigation layer. Thumb access to numbers, symbols, admin, hyper, AOE4, and function keys. The upper-left-middle thumb key holds ~hold_aoe4~: hold for the =FUNCTION= layer, tap/double-tap for the =AOE4= toggle.
+Default typing/navigation layer. Thumb access to numbers, symbols, admin, hyper, AOE4, and function keys. The upper-left-middle thumb key holds ~fn_aoe4_dance~: hold for the =FUNCTION= layer, tap/double-tap for the =AOE4= toggle.
 
 #+begin_src c
         default_layer {
@@ -81,7 +81,7 @@ Default typing/navigation layer. Thumb access to numbers, symbols, admin, hyper,
 &lt NUMBERS CAPS  &hm LGUI A    &hm LALT S    &hm LCTRL D   &hm LSHFT F   &kp G        &kp H         &hm RSHFT J    &hm RCTRL K  &hm LALT L   &hm RGUI SEMI &kp SQT
 &kp LSHFT  &kp Z         &kp X         &kp C         &kp V         &kp B        &kp N         &kp M          &kp COMMA    &kp DOT      &kp FSLH      &kp RSHFT
                       &kp LGUI      &kp LALT                                                           &kp LBKT      &kp RBKT
-                                                  /* upper-left */  &kp LC(LA(LS(LGUI)))  &hold_aoe4 FUNCTION 0  &mo ADMIN
+                                                  /* upper-left */  &kp LC(LA(LS(LGUI)))  &fn_aoe4_dance FUNCTION 0  &mo ADMIN
                                                   /* upper-right */ &none  &none  &none
                                                   /* lower-left */  &mt LC(LA(LSHFT)) TAB  &kp SPACE &lt NUMBERS ESC
                                                   /* lower-right */ &lt SYMBOL_1 ESC &lt NUMBERS RET &lt SYMBOL_2 BSPC
@@ -111,7 +111,7 @@ Right-hand number row. Includes browser mouse back/forward on the left side.
 
 * Function layer
 
-Momentary layer held via ~hold_aoe4~ on the base layer's upper-left-middle thumb key. Replaces the number row with a standard F1-F12 row (EQUAL and MINUS become F11 and F12, matching a full-size keyboard's function row); everything else is transparent.
+Momentary layer held via ~fn_aoe4_dance~ on the base layer's upper-left-middle thumb key. Replaces the number row with a standard F1-F12 row (EQUAL and MINUS become F11 and F12, matching a full-size keyboard's function row); everything else is transparent.
 
 #+begin_src c
         function_layer {

@@ -37,7 +37,7 @@
             bindings = <&none>, <&tog AOE4>;
         };
 
-        hold_aoe4: hold_aoe4 {
+        fn_aoe4_dance: fn_aoe4_dance {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <200>;
@@ -57,7 +57,7 @@
 &lt NUMBERS CAPS  &hm LGUI A    &hm LALT S    &hm LCTRL D   &hm LSHFT F   &kp G        &kp H         &hm RSHFT J    &hm RCTRL K  &hm LALT L   &hm RGUI SEMI &kp SQT
 &kp LSHFT  &kp Z         &kp X         &kp C         &kp V         &kp B        &kp N         &kp M          &kp COMMA    &kp DOT      &kp FSLH      &kp RSHFT
                       &kp LGUI      &kp LALT                                                           &kp LBKT      &kp RBKT
-                                                  /* upper-left */  &kp LC(LA(LS(LGUI)))  &hold_aoe4 FUNCTION 0  &mo ADMIN
+                                                  /* upper-left */  &kp LC(LA(LS(LGUI)))  &fn_aoe4_dance FUNCTION 0  &mo ADMIN
                                                   /* upper-right */ &none  &none  &none
                                                   /* lower-left */  &mt LC(LA(LSHFT)) TAB  &kp SPACE &lt NUMBERS ESC
                                                   /* lower-right */ &lt SYMBOL_1 ESC &lt NUMBERS RET &lt SYMBOL_2 BSPC
