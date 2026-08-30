@@ -6,16 +6,22 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
 
+// Layer indices MUST match the order the layer nodes appear in the keymap
+// node below (first child = 0, second = 1, ...). ZMK assigns indices by
+// position, not by name, so inserting a layer node without renumbering here
+// silently repoints every &mo/&lt/&tog/&zip_temp_layer at the wrong layer.
+// Current node order: base, numbers, function, symbol_1, symbol_2, aoe4,
+// aoe4_fn, admin, auto_mouse, factory.
 #define BASE 0
 #define NUMBERS 1
-#define SYMBOL_1 2
-#define SYMBOL_2 3
-#define ADMIN 4
-#define AUTO_MOUSE 5
-#define FACTORY 6
-#define AOE4 7
-#define AOE4_FN 8
-#define FUNCTION 9
+#define FUNCTION 2
+#define SYMBOL_1 3
+#define SYMBOL_2 4
+#define AOE4 5
+#define AOE4_FN 6
+#define ADMIN 7
+#define AUTO_MOUSE 8
+#define FACTORY 9
 
 / {
     chosen { zmk,physical-layout = &physical_layout_imprint_number_row; };
