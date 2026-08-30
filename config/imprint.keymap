@@ -40,19 +40,23 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&none>, <&aoe4_toggle_flash>;
+            bindings = <&none>, <&layer_toggle_flash AOE4>;
         };
     };
 
     macros {
-        aoe4_toggle_flash: aoe4_toggle_flash {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
+        layer_toggle_flash: layer_toggle_flash {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                /* Do the actual layer toggle first so the flash never delays it. */
-                <&tog AOE4>,
+                /*
+                 * Do the actual layer toggle first, with the macro's own
+                 * parameter forwarded in as the layer to toggle, so the
+                 * flash never delays it.
+                 */
+                <&macro_param_1to1>, <&tog>,
                 /*
                  * Flash by inverting the underglow for 250ms, then inverting
                  * back. RGB_TOG is relative, so this restores whatever the

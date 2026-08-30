@@ -41,11 +41,11 @@ Custom hold-tap and tap-dance behaviors used across the keymap.
 
 - ~hm~ :: homerow mods, tap-preferred, 200ms tapping term.
 - ~td_aoe4~ :: tap-dance on the outer thumb key; a single tap does nothing, a second tap toggles the =AOE4= layer.
-- ~aoe4_toggle_flash~ :: macro invoked by ~td_aoe4~ instead of a bare ~&tog AOE4~. It toggles the layer, then flashes the per-key RGB for 250ms as confirmation. Because ~&tog~ is a toggle, the same flash fires on the way in and on the way out -- it means "the switch happened", not "AOE4 is on".
+- ~layer_toggle_flash~ :: generic one-param macro for "flash the underglow to confirm a layer toggle happened". Takes the layer to toggle as its argument (~<&layer_toggle_flash AOE4>~), forwards it into ~&tog~ via ~macro_param_1to1~, then flashes. ~td_aoe4~ uses it as ~<&layer_toggle_flash AOE4>~ in place of a bare ~&tog AOE4~; the same macro can back any other tap-dance/hold-tap toggle by passing a different layer index. Because ~&tog~ is a toggle, the same flash fires on the way in and on the way out -- it means "the switch happened", not "this layer is on".
 
   The flash is two ~RGB_TOG~ inversions 250ms apart rather than an on/colour/off sequence. ~RGB_TOG~ is *relative*, so the underglow always lands back on whatever state it started in -- there is no need to read the current state (which a keymap macro cannot do) and no hardcoded assumption about whether underglow normally rests on or off. It is visible either way: resting-off blinks bright, resting-on blinks dark.
 
-  Consequences of doing it this way: the flash takes the saved colour and effect instead of a fixed red, and nothing about hue, saturation, brightness or effect is overwritten. The two ~RGB_TOG~ calls each schedule a debounced settings save, but they cancel out, so the value written 60s later is the one that was already stored.
+  Consequences of doing it this way: the flash takes the saved colour and effect instead of a fixed colour, and nothing about hue, saturation, brightness or effect is overwritten. The two ~RGB_TOG~ calls each schedule a debounced settings save, but they cancel out, so the value written 60s later is the one that was already stored.
 
 #+begin_src c
     behaviors {
@@ -62,19 +62,23 @@ Custom hold-tap and tap-dance behaviors used across the keymap.
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&none>, <&aoe4_toggle_flash>;
+            bindings = <&none>, <&layer_toggle_flash AOE4>;
         };
     };
 
     macros {
-        aoe4_toggle_flash: aoe4_toggle_flash {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
+        layer_toggle_flash: layer_toggle_flash {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                /* Do the actual layer toggle first so the flash never delays it. */
-                <&tog AOE4>,
+                /*
+                 * Do the actual layer toggle first, with the macro's own
+                 * parameter forwarded in as the layer to toggle, so the
+                 * flash never delays it.
+                 */
+                <&macro_param_1to1>, <&tog>,
                 /*
                  * Flash by inverting the underglow for 250ms, then inverting
                  * back. RGB_TOG is relative, so this restores whatever the
