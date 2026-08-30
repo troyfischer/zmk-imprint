@@ -40,16 +40,30 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&none>, <&tog AOE4>;
+            bindings = <&none>, <&aoe4_toggle_flash>;
         };
+    };
 
-        fn_aoe4_dance: fn_aoe4_dance {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            flavor = "tap-preferred";
-            bindings = <&mo>, <&td_aoe4>;
+    macros {
+        aoe4_toggle_flash: aoe4_toggle_flash {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings =
+                /* Do the actual layer toggle first so the flash never delays it. */
+                <&tog AOE4>,
+                /*
+                 * Flash by inverting the underglow for 250ms, then inverting
+                 * back. RGB_TOG is relative, so this restores whatever the
+                 * previous on/off state was without needing to read it: off
+                 * blinks bright, on blinks dark. Colour, effect, brightness
+                 * and saturation are never touched.
+                 */
+                <&macro_wait_time 250>,
+                <&rgb_ug RGB_TOG>,
+                <&macro_wait_time 0>,
+                <&rgb_ug RGB_TOG>;
         };
     };
 
@@ -63,7 +77,7 @@
 &lt NUMBERS CAPS  &hm LGUI A    &hm LALT S    &hm LCTRL D   &hm LSHFT F   &kp G        &kp H         &hm RSHFT J    &hm RCTRL K  &hm LALT L   &hm RGUI SEMI &kp SQT
 &kp LSHFT  &kp Z         &kp X         &kp C         &kp V         &kp B        &kp N         &kp M          &kp COMMA    &kp DOT      &kp FSLH      &td_aoe4
                       &kp LGUI      &kp LALT                                                           &kp LBKT      &kp RBKT
-                                                  /* upper-left */  &kp LC(LA(LS(LGUI)))  &fn_aoe4_dance FUNCTION 0  &mo ADMIN
+                                                  /* upper-left */  &kp LC(LA(LS(LGUI)))  &mo FUNCTION  &mo ADMIN
                                                   /* upper-right */ &none  &none  &none
                                                   /* lower-left */  &mt LC(LA(LSHFT)) TAB  &kp SPACE &lt NUMBERS ESC
                                                   /* lower-right */ &lt SYMBOL_1 ESC &lt NUMBERS RET &lt SYMBOL_2 BSPC
