@@ -283,15 +283,15 @@ custom hotkey profile uses them.
         aoe4_layer {
             display-name = "AOE4";
             bindings = <
-&kp ESC     &kp N1   &kp N2   &kp N3   &kp N4   &kp N5         &kp N6   &kp N7   &kp N8      &kp N9    &kp N0    &kp BSPC
-&kp LALT    &kp Q    &kp W    &kp E    &kp R    &kp T          &kp Y    &kp U    &kp I       &kp O     &kp P     &none
-&lt AOE4_FN DEL  &kp A    &kp S    &kp D    &kp F    &kp G          &kp H    &kp J    &kp K       &kp L     &kp SEMI  &kp SQT
-&kp TAB     &kp Z    &kp X    &kp C    &kp V    &kp B          &kp N    &kp M    &kp COMMA   &kp DOT   &kp FSLH  &td_aoe4
-                 &kp SPACE  &kp LCTRL                                                          &kp BSPC  &kp RCTRL
+&kp ESC     &kp N1   &kp N2   &kp N3   &kp N4   &kp N5         &trans  &trans   &trans      &trans    &trans    &trans
+&kp LALT    &kp Q    &kp W    &kp E    &kp R    &kp T          &trans  &trans   &trans      &trans    &trans    &trans
+&lt AOE4_FN DEL  &kp A    &kp S    &kp D    &kp F    &kp H          &trans  &trans   &trans      &trans    &trans    &trans
+&kp TAB     &kp Z    &kp X    &kp C    &kp V    &kp B          &trans  &trans   &trans      &trans    &trans    &td_aoe4
+                 &kp SPACE  &kp LCTRL                                                          &trans  &trans
                                                   /* upper-left */  &trans  &trans  &trans
                                                   /* upper-right */ &trans  &trans  &trans
                                                   /* lower-left */  &kp LCTRL  &kp LSHFT  &kp H
-                                                  /* lower-right */ &trans  &kp RET  &trans
+                                                  /* lower-right */ &trans  &trans  &trans
             >;
         };
 #+end_src
