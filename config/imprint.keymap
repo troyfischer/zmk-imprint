@@ -154,7 +154,7 @@
                  &kp SPACE  &kp LCTRL                                                          &kp BSPC  &kp RCTRL
                                                   /* upper-left */  &trans  &trans  &trans
                                                   /* upper-right */ &trans  &trans  &trans
-                                                  /* lower-left */  &kp LSHFT  &kp H  &kp ESC
+                                                  /* lower-left */  &mo AOE4_FN  &kp LSHFT  &kp H
                                                   /* lower-right */ &trans  &kp RET  &trans
             >;
         };
