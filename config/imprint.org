@@ -78,7 +78,7 @@ Custom hold-tap and tap-dance behaviors used across the keymap.
                  * parameter forwarded in as the layer to toggle, so the
                  * flash never delays it.
                  */
-                <&macro_param_1to1>, <&tog>,
+                <&macro_param_1to1>, <&tog 0>,
                 /*
                  * Flash by inverting the underglow for 250ms, then inverting
                  * back. RGB_TOG is relative, so this restores whatever the
