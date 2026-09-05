@@ -310,7 +310,7 @@ Momentary sublayer for the AOE4 layout, held via the lower-left pinky key (~&lt 
 &trans  &trans   &trans      &trans    &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
                  &trans   &trans                                                            &trans  &trans
                                                   /* upper-left */  &trans  &trans  &trans
-                                                  /* upper-right */ &trans  &trans  &trans
+                                                  /* upper-right */ &trans  &trans  &DEL
                                                   /* lower-left */  &trans  &trans  &trans
                                                   /* lower-right */ &trans  &trans  &trans
             >;
