@@ -287,7 +287,7 @@ custom hotkey profile uses them.
 &kp TAB    &kp Q    &kp W    &kp E    &kp R    &kp T          &trans  &trans   &trans      &trans    &trans    &trans
 &lt AOE4_FN ESC  &kp A    &kp S    &kp D    &kp F    &kp G          &trans  &trans   &trans      &trans    &trans    &trans
 &kp ALT     &kp Z    &kp X    &kp C    &kp V    &kp B          &trans  &trans   &trans      &trans    &trans    &td_aoe4
-                 &kp SPACE  &kp LCTRL                                                          &trans  &trans
+                 &kp SPACE  &kp M                                                              &trans  &trans
                                                   /* upper-left */  &kp LC(LSHFT)  &kp LC(LALT)  &kp ESC
                                                   /* upper-right */ &trans  &trans  &trans
                                                   /* lower-left */  &kp LCTRL  &kp LSHFT  &kp LALT
