@@ -283,14 +283,14 @@ custom hotkey profile uses them.
         aoe4_layer {
             display-name = "AOE4";
             bindings = <
-&kp ESC     &kp N1   &kp N2   &kp N3   &kp N4   &kp N5         &trans  &trans   &trans      &trans    &trans    &trans
-&kp LALT    &kp Q    &kp W    &kp E    &kp R    &kp T          &trans  &trans   &trans      &trans    &trans    &trans
-&lt AOE4_FN DEL  &kp A    &kp S    &kp D    &kp F    &kp G          &trans  &trans   &trans      &trans    &trans    &trans
-&kp TAB     &kp Z    &kp X    &kp C    &kp V    &kp B          &trans  &trans   &trans      &trans    &trans    &td_aoe4
+&kp N0      &kp N1   &kp N2   &kp N3   &kp N4   &kp N5         &trans  &trans   &trans      &trans    &trans    &trans
+&kp TAB    &kp Q    &kp W    &kp E    &kp R    &kp T          &trans  &trans   &trans      &trans    &trans    &trans
+&lt AOE4_FN ESC  &kp A    &kp S    &kp D    &kp F    &kp G          &trans  &trans   &trans      &trans    &trans    &trans
+&kp ALT     &kp Z    &kp X    &kp C    &kp V    &kp B          &trans  &trans   &trans      &trans    &trans    &td_aoe4
                  &kp SPACE  &kp LCTRL                                                          &trans  &trans
-                                                  /* upper-left */  &trans  &trans  &trans
+                                                  /* upper-left */  &kp LC(LSHFT)  &kp LC(LALT)  &kp ESC
                                                   /* upper-right */ &trans  &trans  &trans
-                                                  /* lower-left */  &kp LCTRL  &kp LSHFT  &kp H
+                                                  /* lower-left */  &kp LCTRL  &kp LSHFT  &kp LALT
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
@@ -298,7 +298,7 @@ custom hotkey profile uses them.
 
 * AOE4 FN layer
 
-Momentary sublayer for the AOE4 layout, held via the lower-left pinky key (~&lt AOE4_FN DEL~). Function row and a few utility bindings.
+Momentary sublayer for the AOE4 layout, held via the lower-left pinky key (~&lt AOE4_FN ESC~). Function row and a few utility bindings.
 
 #+begin_src c
         aoe4_fn_layer {
@@ -306,11 +306,11 @@ Momentary sublayer for the AOE4 layout, held via the lower-left pinky key (~&lt 
             bindings = <
 &trans  &kp N6   &kp N7      &kp N8    &kp N9   &kp N0      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &kp F1   &kp F2      &kp F3    &kp F4   &kp F5      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &none    &kp HOME    &kp COMMA &kp DOT  &kp SQT     &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &none    &kp SQT     &kp COMMA &kp DOT  &kp H       &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans   &trans      &trans    &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
-                 &trans   &trans                                                            &trans  &trans
-                                                  /* upper-left */  &trans  &trans  &trans
-                                                  /* upper-right */ &trans  &trans  &DEL
+                 &trans   &kp DEL                                                            &trans  &trans
+                                                  /* upper-left */  &trans  &trans  &trans 
+                                                  /* upper-right */ &trans  &trans  &trans
                                                   /* lower-left */  &trans  &trans  &trans
                                                   /* lower-right */ &trans  &trans  &trans
             >;
