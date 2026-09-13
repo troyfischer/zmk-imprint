@@ -1,3 +1,4 @@
+int main() {
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <behaviors.dtsi>
@@ -25,56 +26,62 @@
 
 / {
     chosen { zmk,physical-layout = &physical_layout_imprint_number_row; };
+return 0;
+}
 
-behaviors {
-    hm: homerow_mods {
-        compatible = "zmk,behavior-hold-tap";
-        #binding-cells = <2>;
-        tapping-term-ms = <200>;
-        quick-tap-ms = <50>;
-        flavor = "tap-preferred";
-        bindings = <&kp>, <&kp>;
+int main() {
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <50>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
+        td_aoe4: tap_dance_aoe4 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&none>, <&layer_toggle_flash AOE4>;
+        };
     };
 
-    td_aoe4: tap_dance_aoe4 {
-        compatible = "zmk,behavior-tap-dance";
-        #binding-cells = <0>;
-        tapping-term-ms = <300>;
-        bindings = <&none>, <&layer_toggle_flash AOE4>;
+    macros {
+        layer_toggle_flash: layer_toggle_flash {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings =
+                /*
+                 * Do the actual layer toggle first, with the macro's own
+                 * parameter forwarded in as the layer to toggle, so the
+                 * flash never delays it.
+                 */
+                <&macro_param_1to1>, <&tog 0>,
+                /*
+                 * Flash by inverting the underglow for 250ms, then inverting
+                 * back. RGB_TOG is relative, so this restores whatever the
+                 * previous on/off state was without needing to read it: off
+                 * blinks bright, on blinks dark. Colour, effect, brightness
+                 * and saturation are never touched.
+                 */
+                <&macro_wait_time 250>,
+                <&rgb_ug RGB_TOG>,
+                <&macro_wait_time 0>,
+                <&rgb_ug RGB_TOG>;
+        };
     };
-};
 
-macros {
-    layer_toggle_flash: layer_toggle_flash {
-        compatible = "zmk,behavior-macro-one-param";
-        #binding-cells = <1>;
-        wait-ms = <0>;
-        tap-ms = <0>;
-        bindings =
-            /*
-             * Do the actual layer toggle first, with the macro's own
-             * parameter forwarded in as the layer to toggle, so the
-             * flash never delays it.
-             */
-            <&macro_param_1to1>, <&tog 0>,
-            /*
-             * Flash by inverting the underglow for 250ms, then inverting
-             * back. RGB_TOG is relative, so this restores whatever the
-             * previous on/off state was without needing to read it: off
-             * blinks bright, on blinks dark. Colour, effect, brightness
-             * and saturation are never touched.
-             */
-            <&macro_wait_time 250>,
-            <&rgb_ug RGB_TOG>,
-            <&macro_wait_time 0>,
-            <&rgb_ug RGB_TOG>;
-    };
-};
+    keymap {
+        compatible = "zmk,keymap";
+return 0;
+}
 
-keymap {
-    compatible = "zmk,keymap";
-
-default_layer {
+int main() {
+        default_layer {
             bindings = <
 &kp EQUAL  &kp N1        &kp N2        &kp N3        &kp N4        &kp N5       &kp N6        &kp N7         &kp N8       &kp N9       &kp N0        &kp MINUS
 &kp TAB    &kp Q         &kp W         &kp E         &kp R         &kp T        &kp Y         &kp U          &kp I        &kp O        &kp P         &kp BSLH
@@ -87,8 +94,11 @@ default_layer {
                                                   /* lower-right */ &lt SYMBOL_1 ESC &lt NUMBERS RET &lt SYMBOL_2 BSPC
             >;
         };
+return 0;
+}
 
-numbers_layer {
+int main() {
+        numbers_layer {
             bindings = <
 &trans  &trans      &trans  &trans  &trans  &trans          &trans     &trans    &trans    &trans    &trans     &trans
 &trans  &none       &none   &none   &none   &none           &kp MINUS  &kp N7    &kp N8    &kp N9    &kp EQUAL  &trans
@@ -101,8 +111,11 @@ numbers_layer {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
+return 0;
+}
 
-function_layer {
+int main() {
+        function_layer {
             bindings = <
 &kp F11  &kp F1   &kp F2   &kp F3   &kp F4   &kp F5         &kp F6   &kp F7   &kp F8   &kp F9   &kp F10  &kp F12
 &trans   &trans   &trans   &trans   &trans   &trans         &trans   &trans   &trans   &trans   &trans   &trans
@@ -115,8 +128,11 @@ function_layer {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
+return 0;
+}
 
-Symbol_1_Layer {
+int main() {
+        Symbol_1_Layer {
             bindings = <
 &trans     &trans     &trans     &trans      &trans     &trans            &trans     &trans        &trans        &trans      &trans    &trans
 &trans     &kp LBRC   &kp LPAR   &kp RPAR    &kp RBRC   &kp QMARK         &none      &none         &none         &none       &none     &trans
@@ -129,8 +145,11 @@ Symbol_1_Layer {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
+return 0;
+}
 
-Symbol_2_Layer {
+int main() {
+        Symbol_2_Layer {
             bindings = <
 &trans     &trans      &trans      &trans     &trans     &trans          &trans      &trans      &trans      &trans      &trans      &trans
 &trans     &kp HASH    &kp COLON   &kp SEMI   &kp SQT    &kp DQT         &none       &none       &none       &none       &none       &trans
@@ -143,38 +162,47 @@ Symbol_2_Layer {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
+return 0;
+}
 
-aoe4_layer {
+int main() {
+        aoe4_layer {
             display-name = "AOE4";
             bindings = <
-&kp ESC     &kp N1   &kp N2   &kp N3   &kp N4   &kp N5         &trans  &trans   &trans      &trans    &trans    &trans
-&kp LALT    &kp Q    &kp W    &kp E    &kp R    &kp T          &trans  &trans   &trans      &trans    &trans    &trans
-&lt AOE4_FN DEL  &kp A    &kp S    &kp D    &kp F    &kp G          &trans  &trans   &trans      &trans    &trans    &trans
-&kp TAB     &kp Z    &kp X    &kp C    &kp V    &kp B          &trans  &trans   &trans      &trans    &trans    &td_aoe4
-                 &kp SPACE  &kp LCTRL                                                          &trans  &trans
-                                                  /* upper-left */  &trans  &trans  &kp ESC
+&kp N0      &kp N1   &kp N2   &kp N3   &kp N4   &kp N5         &trans  &trans   &trans      &trans    &trans    &trans
+&kp TAB    &kp Q    &kp W    &kp E    &kp R    &kp T          &trans  &trans   &trans      &trans    &trans    &trans
+&lt AOE4_FN ESC  &kp A    &kp S    &kp D    &kp F    &kp G          &trans  &trans   &trans      &trans    &trans    &trans
+&kp ALT     &kp Z    &kp X    &kp C    &kp V    &kp B          &trans  &trans   &trans      &trans    &trans    &td_aoe4
+                 &kp SPACE  &kp M                                                              &trans  &trans
+                                                  /* upper-left */  &kp LC(LSHFT)  &kp LC(LALT)  &kp ESC
                                                   /* upper-right */ &trans  &trans  &trans
-                                                  /* lower-left */  &kp LCTRL  &kp LSHFT  &kp H
+                                                  /* lower-left */  &kp LCTRL  &kp LSHFT  &kp LALT
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
+return 0;
+}
 
-aoe4_fn_layer {
+int main() {
+        aoe4_fn_layer {
             display-name = "AOE4 FN";
             bindings = <
 &trans  &kp N6   &kp N7      &kp N8    &kp N9   &kp N0      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &kp F1   &kp F2      &kp F3    &kp F4   &kp F5      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &none    &kp HOME    &kp COMMA &kp DOT  &kp SQT     &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &none    &kp SQT     &kp COMMA &kp DOT  &kp H       &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans   &trans      &trans    &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
-                 &trans   &trans                                                            &trans  &trans
-                                                  /* upper-left */  &trans  &trans  &kp DEL
+                 &trans   &kp DEL                                                            &trans  &trans
+                                                  /* upper-left */  &trans  &trans  &trans 
                                                   /* upper-right */ &trans  &trans  &trans
                                                   /* lower-left */  &trans  &trans  &trans
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
+return 0;
+}
 
-Admin_Layer {
+int main() {
+        Admin_Layer {
             bindings = <
 &bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &rgb_ug RGB_TOG &rgb_ug RGB_EFF  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_SPI
 &trans       &trans        &trans        &trans        &trans        &trans         &rgb_ug RGB_HUD &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &rgb_ug RGB_EFR  &trans
@@ -187,8 +215,11 @@ Admin_Layer {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
+return 0;
+}
 
-Auto_Mouse_Layer {
+int main() {
+        Auto_Mouse_Layer {
             bindings = <
 &trans  &trans  &trans     &trans     &trans     &trans         &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans     &trans     &trans     &trans         &trans  &trans  &trans  &trans  &trans  &trans
@@ -201,8 +232,11 @@ Auto_Mouse_Layer {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
+return 0;
+}
 
-factory_test {
+int main() {
+        factory_test {
             bindings = <
 &kp N2  &kp N3  &kp N4  &kp N5  &kp N6  &kp N7         &kp N8  &kp N9  &kp N0  &kp N1  &kp N2  &kp N3
 &kp N4  &kp N5  &kp N6  &kp N7  &kp N8  &kp N9         &kp N0  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5
@@ -217,15 +251,23 @@ factory_test {
         };
     };
 };
+return 0;
+}
 
+int main() {
 &trackball_peripheral_listener {
     input-processors =
         <&zip_temp_layer AUTO_MOUSE 500>;
 };
+return 0;
+}
 
+int main() {
 &trackball_central_listener {
     input-processors =
         <&zip_xy_scaler 1 12>,
         <&zip_xy_to_scroll_mapper>,
         <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
 };
+return 0;
+}

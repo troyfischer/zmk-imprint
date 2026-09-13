@@ -5,7 +5,7 @@ This file is the literate source for [[file:imprint.keymap][imprint.keymap]]. Ed
 
 * Includes and layer indices
 
-#+begin_src c
+#+begin_src C
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <behaviors.dtsi>
@@ -47,7 +47,7 @@ Custom hold-tap and tap-dance behaviors used across the keymap.
 
   Consequences of doing it this way: the flash takes the saved colour and effect instead of a fixed colour, and nothing about hue, saturation, brightness or effect is overwritten. The two ~RGB_TOG~ calls each schedule a debounced settings save, but they cancel out, so the value written 60s later is the one that was already stored.
 
-#+begin_src c
+#+begin_src C
     behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
@@ -101,7 +101,7 @@ Custom hold-tap and tap-dance behaviors used across the keymap.
 
 Default typing/navigation layer. Thumb access to numbers, symbols, admin, hyper, AOE4, and function keys. The upper-left-middle thumb key is a plain ~&mo FUNCTION~. The bottom-right pinky key (right shift's position on a standard layout) is the sole ~td_aoe4~, matching its placement on the old Tomahawk keymap: double-tap it to toggle =AOE4=.
 
-#+begin_src c
+#+begin_src C
         default_layer {
             bindings = <
 &kp EQUAL  &kp N1        &kp N2        &kp N3        &kp N4        &kp N5       &kp N6        &kp N7         &kp N8       &kp N9       &kp N0        &kp MINUS
@@ -121,7 +121,7 @@ Default typing/navigation layer. Thumb access to numbers, symbols, admin, hyper,
 
 Right-hand number row. Includes browser mouse back/forward on the left side.
 
-#+begin_src c
+#+begin_src C
         numbers_layer {
             bindings = <
 &trans  &trans      &trans  &trans  &trans  &trans          &trans     &trans    &trans    &trans    &trans     &trans
@@ -141,7 +141,7 @@ Right-hand number row. Includes browser mouse back/forward on the left side.
 
 Momentary layer held via ~&mo FUNCTION~ on the base layer's upper-left-middle thumb key. Replaces the number row with a standard F1-F12 row (EQUAL and MINUS become F11 and F12, matching a full-size keyboard's function row); everything else is transparent.
 
-#+begin_src c
+#+begin_src C
         function_layer {
             bindings = <
 &kp F11  &kp F1   &kp F2   &kp F3   &kp F4   &kp F5         &kp F6   &kp F7   &kp F8   &kp F9   &kp F10  &kp F12
@@ -161,7 +161,7 @@ Momentary layer held via ~&mo FUNCTION~ on the base layer's upper-left-middle th
 
 Primary symbol layer. Punctuation on the left, arrows on the right.
 
-#+begin_src c
+#+begin_src C
         Symbol_1_Layer {
             bindings = <
 &trans     &trans     &trans     &trans      &trans     &trans            &trans     &trans        &trans        &trans      &trans    &trans
@@ -181,7 +181,7 @@ Primary symbol layer. Punctuation on the left, arrows on the right.
 
 Secondary symbol layer. Extra punctuation and paired-symbol access.
 
-#+begin_src c
+#+begin_src C
         Symbol_2_Layer {
             bindings = <
 &trans     &trans      &trans      &trans     &trans     &trans          &trans      &trans      &trans      &trans      &trans      &trans
@@ -279,7 +279,7 @@ custom hotkey profile uses them.
 
 ** Layer definition
 
-#+begin_src c
+#+begin_src C
         aoe4_layer {
             display-name = "AOE4";
             bindings = <
@@ -300,7 +300,7 @@ custom hotkey profile uses them.
 
 Momentary sublayer for the AOE4 layout, held via the lower-left pinky key (~&lt AOE4_FN ESC~). Function row and a few utility bindings.
 
-#+begin_src c
+#+begin_src C
         aoe4_fn_layer {
             display-name = "AOE4 FN";
             bindings = <
@@ -321,7 +321,7 @@ Momentary sublayer for the AOE4 layout, held via the lower-left pinky key (~&lt 
 
 Bluetooth, RGB, media, and factory access.
 
-#+begin_src c
+#+begin_src C
         Admin_Layer {
             bindings = <
 &bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &rgb_ug RGB_TOG &rgb_ug RGB_EFF  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_SPI
@@ -341,7 +341,7 @@ Bluetooth, RGB, media, and factory access.
 
 Temporary mouse-button layer, activated automatically by right trackball movement.
 
-#+begin_src c
+#+begin_src C
         Auto_Mouse_Layer {
             bindings = <
 &trans  &trans  &trans     &trans     &trans     &trans         &trans  &trans  &trans  &trans  &trans  &trans
@@ -361,7 +361,7 @@ Temporary mouse-button layer, activated automatically by right trackball movemen
 
 Simple hardware test layer.
 
-#+begin_src c
+#+begin_src C
         factory_test {
             bindings = <
 &kp N2  &kp N3  &kp N4  &kp N5  &kp N6  &kp N7         &kp N8  &kp N9  &kp N0  &kp N1  &kp N2  &kp N3
@@ -385,7 +385,7 @@ Simple hardware test layer.
 
 Cursor movement, with temporary mouse-button layer activation.
 
-#+begin_src c
+#+begin_src C
 &trackball_peripheral_listener {
     input-processors =
         <&zip_temp_layer AUTO_MOUSE 500>;
@@ -396,7 +396,7 @@ Cursor movement, with temporary mouse-button layer activation.
 
 Scrolling-focused trackball with reduced sensitivity and inverted Y: sensitivity is multiplied by 1 and divided by 12 (significantly slower for scrolling), XY movement is mapped to scroll events instead of cursor movement, and vertical scrolling is inverted so the view moves in the same direction as the top of the trackball.
 
-#+begin_src c
+#+begin_src C
 &trackball_central_listener {
     input-processors =
         <&zip_xy_scaler 1 12>,
