@@ -1,4 +1,3 @@
-int main() {
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <behaviors.dtsi>
@@ -26,10 +25,7 @@ int main() {
 
 / {
     chosen { zmk,physical-layout = &physical_layout_imprint_number_row; };
-return 0;
-}
 
-int main() {
     behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
@@ -77,10 +73,7 @@ int main() {
 
     keymap {
         compatible = "zmk,keymap";
-return 0;
-}
 
-int main() {
         default_layer {
             bindings = <
 &kp EQUAL  &kp N1        &kp N2        &kp N3        &kp N4        &kp N5       &kp N6        &kp N7         &kp N8       &kp N9       &kp N0        &kp MINUS
@@ -94,10 +87,7 @@ int main() {
                                                   /* lower-right */ &lt SYMBOL_1 ESC &lt NUMBERS RET &lt SYMBOL_2 BSPC
             >;
         };
-return 0;
-}
 
-int main() {
         numbers_layer {
             bindings = <
 &trans  &trans      &trans  &trans  &trans  &trans          &trans     &trans    &trans    &trans    &trans     &trans
@@ -111,10 +101,7 @@ int main() {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
-return 0;
-}
 
-int main() {
         function_layer {
             bindings = <
 &kp F11  &kp F1   &kp F2   &kp F3   &kp F4   &kp F5         &kp F6   &kp F7   &kp F8   &kp F9   &kp F10  &kp F12
@@ -128,10 +115,7 @@ int main() {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
-return 0;
-}
 
-int main() {
         Symbol_1_Layer {
             bindings = <
 &trans     &trans     &trans     &trans      &trans     &trans            &trans     &trans        &trans        &trans      &trans    &trans
@@ -145,10 +129,7 @@ int main() {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
-return 0;
-}
 
-int main() {
         Symbol_2_Layer {
             bindings = <
 &trans     &trans      &trans      &trans     &trans     &trans          &trans      &trans      &trans      &trans      &trans      &trans
@@ -162,10 +143,7 @@ int main() {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
-return 0;
-}
 
-int main() {
         aoe4_layer {
             display-name = "AOE4";
             bindings = <
@@ -173,17 +151,14 @@ int main() {
 &kp TAB    &kp Q    &kp W    &kp E    &kp R    &kp T          &trans  &trans   &trans      &trans    &trans    &trans
 &lt AOE4_FN ESC  &kp A    &kp S    &kp D    &kp F    &kp G          &trans  &trans   &trans      &trans    &trans    &trans
 &kp ALT     &kp Z    &kp X    &kp C    &kp V    &kp B          &trans  &trans   &trans      &trans    &trans    &td_aoe4
-                 &kp SPACE  &kp M                                                              &trans  &trans
-                                                  /* upper-left */  &kp LC(LSHFT)  &kp LC(LALT)  &kp ESC
+                 &kp FSLH  &kp M                                                              &trans  &trans
+                                                  /* upper-left */  &kp LC(LSHFT)  &kp LC(LALT)  &kp SPACE
                                                   /* upper-right */ &trans  &trans  &trans
                                                   /* lower-left */  &kp LCTRL  &kp LSHFT  &kp LALT
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
-return 0;
-}
 
-int main() {
         aoe4_fn_layer {
             display-name = "AOE4 FN";
             bindings = <
@@ -198,10 +173,7 @@ int main() {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
-return 0;
-}
 
-int main() {
         Admin_Layer {
             bindings = <
 &bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &rgb_ug RGB_TOG &rgb_ug RGB_EFF  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_SPI
@@ -215,10 +187,7 @@ int main() {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
-return 0;
-}
 
-int main() {
         Auto_Mouse_Layer {
             bindings = <
 &trans  &trans  &trans     &trans     &trans     &trans         &trans  &trans  &trans  &trans  &trans  &trans
@@ -232,10 +201,7 @@ int main() {
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
-return 0;
-}
 
-int main() {
         factory_test {
             bindings = <
 &kp N2  &kp N3  &kp N4  &kp N5  &kp N6  &kp N7         &kp N8  &kp N9  &kp N0  &kp N1  &kp N2  &kp N3
@@ -251,23 +217,15 @@ int main() {
         };
     };
 };
-return 0;
-}
 
-int main() {
 &trackball_peripheral_listener {
     input-processors =
         <&zip_temp_layer AUTO_MOUSE 500>;
 };
-return 0;
-}
 
-int main() {
 &trackball_central_listener {
     input-processors =
         <&zip_xy_scaler 1 12>,
         <&zip_xy_to_scroll_mapper>,
         <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
 };
-return 0;
-}
