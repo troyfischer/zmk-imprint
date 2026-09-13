@@ -149,12 +149,12 @@
             bindings = <
 &kp N0      &kp N1   &kp N2   &kp N3   &kp N4   &kp N5         &trans  &trans   &trans      &trans    &trans    &trans
 &kp TAB    &kp Q    &kp W    &kp E    &kp R    &kp T          &trans  &trans   &trans      &trans    &trans    &trans
-&lt AOE4_FN ESC  &kp A    &kp S    &kp D    &kp F    &kp G          &trans  &trans   &trans      &trans    &trans    &trans
+&mo AOE4_FN      &kp A    &kp S    &kp D    &kp F    &kp G          &trans  &trans   &trans      &trans    &trans    &trans
 &kp LALT    &kp Z    &kp X    &kp C    &kp V    &kp B          &trans  &trans   &trans      &trans    &trans    &td_aoe4
                  &kp FSLH  &kp M                                                              &trans  &trans
                                                   /* upper-left */  &kp LC(LSHFT)  &kp LC(LALT)  &kp SPACE
                                                   /* upper-right */ &trans  &trans  &trans
-                                                  /* lower-left */  &kp LCTRL  &kp LSHFT  &kp LALT
+                                                  /* lower-left */  &kp LCTRL  &kp LSHFT  &kp ESC
                                                   /* lower-right */ &trans  &trans  &trans
             >;
         };
@@ -167,7 +167,7 @@
 &trans  &none    &kp SQT     &kp COMMA &kp DOT  &kp H       &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans   &trans      &trans    &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
                  &trans   &kp DEL                                                            &trans  &trans
-                                                  /* upper-left */  &trans  &trans  &trans 
+                                                  /* upper-left */  &trans  &trans  &trans
                                                   /* upper-right */ &trans  &trans  &trans
                                                   /* lower-left */  &trans  &trans  &trans
                                                   /* lower-right */ &trans  &trans  &trans
